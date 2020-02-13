@@ -509,13 +509,8 @@ export function getAds() {
 export function addAds(data) {
   var params = new URLSearchParams();
   params.append('id', data.id);
-  params.append('tips1', data.tips1);
-  params.append('tips2', data.tips2);
-  params.append('tips3', data.tips3);
-  params.append('img1', data.img1);
-  params.append('img2', data.img2);
-  params.append('img3', data.img3);
-  //params.append('pwd', data.pwd);
+  params.append('tips', data.tips);
+  params.append('img', data.img);
   const res=axios.post('/api/ads/add', params) ;
   return new Promise((resolve,reject)=>{
     res

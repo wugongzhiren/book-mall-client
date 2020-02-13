@@ -28,26 +28,15 @@ export function login(data){
 //获取所有用户信息
 export function getAllUser(){
 	const res = axios.get('/api/user/getUserAll');
-	return new Promise((resolve,reject)=>{
-		res
-		.then((result)=>{
-	        if(result.status===200){
-	        	return result.data;
-	        }else{
-	        	reject(result.status)
-	        }
-	    })
-	    .then((json)=>{
-    		if(json.code===0){
-                resolve(json.data);
-            }else{
-                reject(json.message);
-            }
-    	})
-	    .catch((e)=>{
-	    	reject(e.toString())
-	    })
-	})
+  return new Promise((resolve,reject)=>{
+    res
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
 }
 
 //删除指定用户
@@ -331,12 +320,14 @@ export function getGoodsInfo(id){
 //增加商品
 export function addGoods(data){
   const params = new URLSearchParams();
+  params.append('id', data.id);
   params.append('name', data.name);
   params.append('type', data.type);
-  params.append('img', data.img);
+  params.append('imgUrl', data.imgUrl);
   params.append('description', data.description);
-  params.append('stockNum', data.stockNum);
+  params.append('stock', data.stock);
   params.append('unitPrice', data.unitPrice);
+  params.append('flag', data.flag);
   const res=axios.post('/api/goods/add', params) ;
   return new Promise((resolve,reject)=>{
     res

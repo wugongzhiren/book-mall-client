@@ -1,29 +1,7 @@
 <template>
   <div>
-
-    <template>
-      <el-table
-        :data="suggests"
-        style="width: 100%">
-        <el-table-column
-          prop="id"
-          label="ID"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="userid"
-          label="用户ID"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="content"
-          label="建议内容">
-        </el-table-column>
-      </el-table>
-    </template>
-
-
-
+    <el-button>数据库数据备份</el-button>
+    <el-button>数据库数据恢复</el-button>
   </div>
 </template>
 

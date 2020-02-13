@@ -1,14 +1,13 @@
 <template>
   <div class="Backstage" :style="{width:width+'px',height:height+'px'}">
     <div class="bsLeft">
-      <div class="logo">XXXの蛋糕店</div>
+      <!--<div class="logo">XXXの蛋糕店</div>-->
       <ul :style="{height:(height-70)+'px'}">
-        <!--<li @click="navTo('/backstage/editUser')" :class="{selected:curPath==='/backstage/editUser'}">用户管理</li>-->
-        <li @click="navTo('/backstage/goods')" :class="{selected:curPath==='/backstage/goods'}">商品管理</li>
+        <li @click="navTo('/backstage/editUser')" :class="{selected:curPath==='/backstage/editUser'}">用户管理</li>
+        <li @click="navTo('/backstage/goods')" :class="{selected:curPath==='/backstage/goods'}">图书管理</li>
         <li @click="navTo('/backstage/orders')" :class="{selected:curPath==='/backstage/orders'}">订单管理</li>
-        <li @click="navTo('/backstage/editTicket')" :class="{selected:curPath==='/backstage/editTicket'}">优惠券管理</li>
-        <li @click="navTo('/backstage/editAds')" :class="{selected:curPath==='/backstage/editAds'}">外链和公告栏管理</li>
-        <li @click="navTo('/backstage/suggest')" :class="{selected:curPath==='/backstage/suggest'}">信息反馈</li>
+        <li @click="navTo('/backstage/editAds')" :class="{selected:curPath==='/backstage/editAds'}">公告管理</li>
+        <li @click="navTo('/backstage/suggest')" :class="{selected:curPath==='/backstage/suggest'}">数据维护</li>
       </ul>
     </div><div class="bsRight">
       <div class="header">

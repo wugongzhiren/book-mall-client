@@ -27,11 +27,13 @@
       <li :key="item.id"
           @click="showGood(item.id)"
           class="sale-item"
-          v-for="item in hotGoods">
-        <img :src="item.imageUrl"
+          v-for="item in bookList.slice(0,4)">
+        <el-card style="margin: 10px">
+        <img :src="item.imgurl"
              alt="">
         <div class="sale-name">{{item.name}}</div>
-        <div class="sale-price">{{item.salePrice | money}}</div>
+        <div class="sale-price">￥{{item.unitPrice}}</div>
+        </el-card>
       </li>
     </ul>
   </good-item>
@@ -41,46 +43,43 @@
       <li :key="item.id"
           @click="showGood(item.id)"
           class="li-item"
-          v-for="(item) in saleGoods">
+          v-for="(item) in bookList.slice(0,4)">
+        <el-card style="margin: 10px">
         <div class="img">
-          <img :src="item.imageUrl">
+          <img :src="item.imgurl">
         </div>
         <div class="title">
           {{item.name}}
         </div>
         <div class="price">
             <span class="new-price">
-              {{item.salePrice| money}}
+              {{item.unitPrice}}
             </span>
-          <span class="old-price">
-          <del>
-            {{item.price | money}}
-          </del>
-        </span>
         </div>
+        </el-card>
       </li>
     </ul>
   </good-item>
   <good-item describe="发现更多优质好货"
              title="发现">
     <ul class="discover-ul">
-    &lt;!&ndash;  <background-img :class="index===0?'discover-img':''"
+     <backgroundImg :class="index===0?'discover-img':''"
                       :desc="item.description"
-                      :imgSrc="item.imageUrl"
+                      :imgSrc="item.imgurl"
                       :key="item.id"
                       :topic="item.name"
                       @click.native="showGood(item.id)"
                       class="discover-li"
-                      v-for="(item,index) in discoverGoods.slice(0,2)"></background-img>&ndash;&gt;
+                      v-for="(item,index) in bookList.slice(0,2)"/></backgroundImg>
     </ul>
     <ul class="discover-ul">
-     &lt;!&ndash; <background-img :desc="item.description"
-                      :imgSrc="item.imageUrl"
+      <backgroundImg :desc="item.description"
+                      :imgSrc="item.imgurl"
                       :key="item.id"
                       :topic="item.name"
                       @click.native="showGood(item.id)"
                       class="discover-li"
-                      v-for="item in discoverGoods.slice(2,5)"></background-img>&ndash;&gt;
+                      v-for="item in bookList.slice(2,5)"></backgroundImg>
     </ul>
   </good-item>
 </div>
@@ -100,9 +99,9 @@
 </el-row>-->
 
 
-    <el-row style="margin-top: 50px">
+  <!--  <el-row style="margin-top: 50px">
       <hr >
-    <!--  <section class="hotGoods section">
+    &lt;!&ndash;  <section class="hotGoods section">
       <SectionHeader title="新品推荐" tips="最新商品为您推荐" />
                 <div class="content">
                   <ul class="left">
@@ -125,8 +124,8 @@
                     />
                   </ul>
                 </div>
-    </section>-->
-    </el-row>
+    </section>&ndash;&gt;
+    </el-row>-->
     <!--<el-row>
       <video-player
         style="width:1000px;height: 400px;margin:0 auto"
@@ -148,6 +147,7 @@ import SectionHeader from '../../components/SectionHeader';
 import ZoomImg from '../../components/ZoomImg';
 import GoodsItem from '../../components/GoodsItem';
 import goodItem from "../../components/goodItem";
+import backgroundImg from "../../components/backgroundImg";
 import TypeItem from '../../components/TypeItem'
 import Slick from '../../components/Slick';
 import FadeSwiper from '../../components/FadeSwiper';
@@ -158,6 +158,7 @@ import {getAds} from "../../api/client";
 export default {
   name: 'MallIndex',
   components:{
+    backgroundImg,
     SectionHeader,
     ZoomImg,
     GoodsItem,
@@ -173,37 +174,7 @@ export default {
   },
   data () {
     return {
-      playerOptions: {
-        // playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
-        autoplay: true, // 如果true,浏览器准备好时开始回放。
-        muted: false, // 默认情况下将会消除任何音频。
-        loop: false, // 导致视频一结束就重新开始。
-        preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
-        language: 'zh-CN',
-        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
-        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
-        sources: [
-          {
-            type: 'video/mp4', // 这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
-            src: 'src/assets/video/ad.mp4' // url地址
-          }
-        ],
-        hls: true,
-       // poster: 'http://pic33.nipic.com/20131007/13639685_123501617185_2.jpg', // 你的封面地址
-        width: document.documentElement.clientWidth, // 播放器宽度
-        notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
-        controlBar: {
-          timeDivider: true,
-          durationDisplay: true,
-          remainingTimeDisplay: false,
-          fullscreenToggle: true // 全屏按钮
-        }
-      },
-      typeList:[{"id":"0","img":"http://holiland.com/images/201702/goods_img/63_G_1487033349882.jpg","name":"全部"},{"id":"1","img":"http://holiland.com/data/afficheimg/1556050944618701139.jpg","name":"经典系列"},
-        {"id":"2","img":"http://holiland.com/data/afficheimg/1556053192285643115.jpg","name":"儿童系列"},{"id":"3","img":"http://holiland.com/data/afficheimg/1562625291693904523.jpg","name":"尊爱系列"},
-        {"id":"4","img":"http://holiland.com/images/201611/goods_img/448_G_1479602127024.jpg","name":"奶油系列"}],
-      videoSrc: 'http://cloud.video.taobao.com//play/u/2455221099/p/1/e/6/t/1/50071310842.mp4',
-      goodsList:[],
+      bookList:[],
       initTimestamp:0,
       newTimestamp:0,
       timer:null,
@@ -237,7 +208,7 @@ export default {
         const res = getGoods();
         res
           .then((goods)=>{
-            this.goodsList = goods.t;
+            this.bookList = goods.t;
           })
           .catch((e)=>{
             alert(e);
@@ -270,7 +241,7 @@ export default {
     }
   },
   created() {
-   /* const res = getAds();
+    const res = getAds();
     res
       .then((data) => {
         if(data.t.length>0) {
@@ -278,25 +249,23 @@ export default {
           this.img2=(data.t[0].img2);
           this.img3=(data.t[0].img3);
           //alert( data.t[0].tips1)
-          /!* this.tip1 = data.t.tip1;
+           this.tip1 = data.t.tip1;
            this.tip2 = data.t.tip2;
            this.tip3 = data.t.tip3;
            this.img1 = data.t.img1;
            this.img2 = data.t.img2;
-           this.img3 = data.t.img3;*!/
+           this.img3 = data.t.img3;
         }
       })
       .catch((e) => {
         alert(e);
-      })*/
+      })
   },
   mounted(){
     //获取数据
-   // this.getGoodsList(0);
-
-
+    this.getGoodsList(0);
     //记录打开网页再加四小时的时间
-    /*this.initTimestamp = new Date().getTime()+(4*60*60*1000);
+    this.initTimestamp = new Date().getTime()+(4*60*60*1000);
     this.timer = setInterval(()=>{
       this.newTimestamp = new Date().getTime();
       let diff = parseInt((this.initTimestamp-this.newTimestamp)/1000);
@@ -306,7 +275,7 @@ export default {
       this.m = new String(Math.floor(diff/60)).padStart(2,'0');
       diff = diff%60;
       this.s = new String(diff).padStart(2,'0');
-    },1000);*/
+    },1000);
   },
 
   beforeDestroy(){
@@ -321,7 +290,7 @@ export default {
 @import "../../assets/css/var.less";
 .MallIndex{
   /*width: 100%;*/
-  height: 1900px;
+  height: 1600px;
   .section{
     padding:30px;
     overflow: hidden;
@@ -603,6 +572,82 @@ export default {
         font-size: 12px;
         color: #8f8f8f;
       }
+    }
+  }
+}
+.hot-ul {
+  display:flex;
+
+  .sale-item {
+    flex-grow: 1;
+    width :25%;
+    overflow: hidden;
+    padding :2px 4px;
+    text-align :center;
+
+    img {
+      height: 200px;
+    }
+
+    .sale-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space :nowrap;
+    }
+
+    .sale-price {
+      color: #ff4c0a;
+      font-size:16px;
+    }
+  }
+}
+.sale-ul {
+  display: flex;
+  margin-bottom: 4px;
+
+  .li-item {
+    flex-grow: 1;
+    width :25%;
+    overflow: hidden;
+    padding: 2px 4px;
+
+    img {
+      height: 200px;
+    }
+
+    .title {
+      overflow: hidden;
+      text-overflow :ellipsis;
+      white-space: nowrap;
+    }
+
+    .new-price {
+      color :#ff4c0a;
+    }
+
+    .old-price {
+      font-size :12px;
+      color: #333;
+      margin-left :6px;
+    }
+  }
+}
+
+.discover-ul {
+  display :flex;
+  height :200px;
+  margin-bottom: 4px;
+
+  .discover-img {
+    width :80px;
+  }
+
+  .discover-li {
+    flex-grow: 1;
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

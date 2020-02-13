@@ -8,11 +8,11 @@
     <el-row>
     <header>
       <div class="container clear">
-        <span class="title" @click="navTo('/mall')"> 欢迎<span style="color: red" @click="navTo('/login')">登录</span>xxx网上书店</span>
+        <span class="title" @click="navTo('/mall')"> 欢迎<span style="color: red" @click="navTo('/login')">登录</span>字里行间网上书店</span>
         <!--<i class="iconfont icon-search" @click="searchConfirm"/>
         <input  class="TextInput" v-model="searchText" placeholder="请输入商品关键字"/>-->
 
-        <div style="margin-left: 500px;padding-top: 16px">
+        <div style="margin-left: 400px;padding-top: 16px">
         <el-input style="width: 320px" placeholder="搜索关键字" v-model="input3" class="input-with-select">
           <el-select v-model="select" slot="prepend" placeholder="请选择">
             <el-option label="按书名" value="1"></el-option>
@@ -48,8 +48,8 @@
           <span><i class="iconfont icon-fabulous" />用户反馈</span>
         </div>
         <div class="intro footerItem">
-          <p class="title">xxxの蛋糕店</p>
-          <p class="intro-p">全国连锁，做全国消费者最喜爱的蛋糕，全国36仓急速发货，新鲜快速</p>
+          <p class="title">字里行间网上书店</p>
+          <p class="intro-p">世间财富万万千，唯有诗书最宝贵。钻石比之稍逊色，金银更是不能言。遍览群书似富翁，一生尽得他人尊；</p>
           <div>
             关注我们：
             <img src="http://yanxuan.nosdn.127.net/60068701f3a380911f237c26c91b39d0.png" alt=""/>
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="code footerItem">
-          <p class="title">手机扫码购买</p>
+          <p class="title">欢迎关注微信公众号</p>
           <div id="qrcode"></div>
         </div>
       </div>
@@ -69,15 +69,14 @@
         <div class="footerBottom">
 
           <ul>
-            <li>Copyright2020 ©XXXの蛋糕食品有限公司 版权所有</li>
+            <li>Copyright2020 ©XXXの字里行间 版权所有</li>
           </ul>
-          <p>XXX公司版权所有 © 1996-2020   食品经营许可证：XXXXXXXXXXXXXXXXX</p>
+          <p>XXX公司版权所有 © 1996-2020  许可证：XXXXXXXXXXXXXXXXX</p>
           <ul style="margin-top: 10px">
 
             <span style="cursor:pointer;" @click="See('https://www.taobao.com')">淘宝网 |</span>
-            <span style="cursor:pointer;" @click="See('https://www.jd.com')">京东商城 |</span>
-            <span style="cursor:pointer;" @click="See('http://www.3songshu.com/')">三只松鼠 |</span>
-            <span style="cursor:pointer;" @click="See('https://baicaowei.tmall.com/')">百草味</span>
+            <span style="cursor:pointer;" @click="See('http://www.dangdang.com/')">当当网 |</span>
+            <span style="cursor:pointer;" @click="See('http://www.jd.com/')">京东商城 </span>
           </ul>
         </div>
       </div>
@@ -406,7 +405,7 @@ export default {
   }
   footer{
 
-    background-color: #87D0E3;
+    background-color :@thirdColor;
     width: 100%;
     height: 208px;
     color:white;

@@ -2,27 +2,36 @@
   <div class="EditUser">
   	<header class="clear">
   		<span>用户管理</span>
-  		<div><input ref="input" type="text" placeholder="输入搜索用户" /><button @click="searchUser"><i class="iconfont icon-search" /></button></div>
-  	</header>
-	<table className="userTable">
-        <thead>
-        	<tr><th>用户ID</th><th>email</th><th>昵称</th><th>性别</th><th>收件人</th><th>收货地址</th><th>联系电话</th><th>操作</th></tr>
-        </thead>
-        <tbody>
-            <tr v-for="(item,index) in userList" :key="'user'+item.id">
-                <td>{{item.id}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.nickname}}</td>
-                <td>{{item.sex}}</td>
-                <td>{{item.recipient}}</td>
-                <td>{{item.address}}</td>
-                <td>{{item.phone}}</td>
-                <td><button class="delete" @click="deleteUser(item.id)">删除</button></td>
-            </tr>
-        </tbody>
-    </table>
-  	
-    
+    </header>
+      <div class="content">
+        <el-table
+          :data="userList"
+          style="width: 100%">
+          <el-table-column
+            prop="id"
+            label="ID"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="userid"
+            label="用户ID"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="username"
+            label="用户名">
+          </el-table-column>
+          <el-table-column
+            prop="phone"
+            label="联系方式">
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            label="用户地址">
+          </el-table-column>
+        </el-table>
+      </div>
+
   </div>
 </template>
 
@@ -41,7 +50,7 @@ export default {
   	const res = getAllUser();
   	res
   	.then((users)=>{
-  		this.userList = users;
+  		this.userList = users.t;
   	})
   	.catch((e)=>{
   		alert(e)

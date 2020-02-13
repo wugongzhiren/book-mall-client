@@ -1,36 +1,18 @@
 <template>
   <div class="EditGoods">
     <header class="clear">
-      <span>外链</span>
+      <span>公告设置</span>
     </header>
     <div class="content">
       <div class="inputBox">
-        <span>公告1：</span>
-        <TextInput class="long" placeholder="请输入公告1" v-model="tips1" />
+        <span>文字公告：</span>
+        <TextInput class="long" placeholder="请输入公告1" v-model="tips" />
       </div>
       <div class="inputBox">
-        <span>公告2：</span>
-        <TextInput class="long" placeholder="请输入公告2" v-model="tips2" />
+        <span>图片公告：</span>
+        <TextInput class="long" placeholder="请输入图片地址" v-model="img" />
       </div>
-      <div class="inputBox">
-        <span>公告3：</span>
-        <TextInput class="long" placeholder="请输入公告3" v-model="tips3" />
-      </div>
-      <div class="inputBox">
-        <span>图片1：</span>
-        <TextInput class="long" placeholder="请输入图片1地址" v-model="img1" />
-      </div>
-      <div class="inputBox">
-        <span>图片2：</span>
-        <TextInput class="long" placeholder="请输入图片2地址" v-model="img2" />
-      </div>
-      <div class="inputBox">
-        <span>图片3：</span>
-        <TextInput class="long" placeholder="请输入图片3地址" v-model="img3" />
-      </div>
-      <div class="btnBox">
-        <button class="confirmBtn" @click="saveChange">保存</button>
-      </div>
+      <el-button type="primary" @click="saveChange">保存</el-button>
     </div>
   </div>
 </template>
@@ -48,12 +30,8 @@
     data() {
       return {
         id:'',
-        tips1: '',
-        tips2: '',
-        tips3: '',
-        img1: '',
-        img2: '',
-        img3: '',
+        tips: '',
+        img: '',
       }
     },
     methods: {
@@ -61,18 +39,14 @@
         this.$router.go(-1);
       },
       saveChange(){
-        if(this.tips1==''||this.tips2==''||this.tips3==''||this.img1==''||this.img2==''||this.img3==''){
+        if(this.tips==''||this.img==''){
           this.$message("请输入完整的信息!");
           return;
         }
         const res = addAds({
           id: this.id,
-          tips1: this.tips1,
-          tips2: this.tips2,
-          tips3: this.tips3,
-          img1:this.img1,
-          img2:this.img2,
-          img3:this.img3
+          tips: this.tips,
+          img:this.img
         });
         res
           .then((data) => {
@@ -93,12 +67,8 @@
         .then((data) => {
           if(data.t.length>0) {
             this.id = data.t[0].id;
-            this.tips1 = data.t[0].tips1;
-            this.tips2 = data.t[0].tips2;
-            this.tips3 = data.t[0].tips3;
-            this.img1 = data.t[0].img1;
-            this.img2 = data.t[0].img2;
-            this.img3 = data.t[0].img3;
+            this.tips = data.t[0].tips;
+            this.img = data.t[0].img;
           }
         })
         .catch((e) => {
