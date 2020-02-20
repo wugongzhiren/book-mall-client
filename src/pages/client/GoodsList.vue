@@ -1,4 +1,5 @@
 <template>
+
   <div class="GoodsList">
     <div class="sortBox">
       <span class="title">排序：</span>
@@ -15,12 +16,13 @@
         :key="+item.id"
         :id="item.id"
         :img="item.imgurl"
-        :name="item.goodsname"
-        :price="item.price"
+        :name="item.name"
+        :price="item.unitPrice"
       />
       <p class="noGoods" v-if="goodsList.length<=0">抱歉，没有找到相关商品~</p>
   </ul>
   </div>
+
 </template>
 
 <script>

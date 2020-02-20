@@ -1,10 +1,49 @@
 <template>
   <div class="GoodsDetail">
+
     <div class="content">
+      <el-card>
       <div class="goodsInfo">
         <img class="infoLeft" :src="goodsImg" alt="商品图片"/>
         <div class="infoRight">
-          <div class="infoBox">
+          <van-cell-group>
+            <van-cell title="书名">
+              {{goodsName}}
+            </van-cell>
+            <van-cell title="作者">
+              {{author}}
+            </van-cell>
+            <van-cell title="类型">
+              <span v-if="typeId=='1'">国学</span>
+              <span v-else-if="typeId=='2'">教辅</span>
+              <span v-else-if="typeId=='3'">专业类</span>
+              <span v-else-if="typeId=='4'">小说</span>
+              <span v-else-if="typeId=='5'">计算机</span>
+              <span v-else-if="typeId=='6'">漫画</span>
+            </van-cell>
+            <van-cell title="单价">
+              {{price}}
+            </van-cell>
+            <van-cell title="库存">
+              {{'还剩'+stockNum+'件'}}
+            </van-cell>
+            <van-cell title="出版社">
+              {{publish}}
+            </van-cell>
+          </van-cell-group>
+
+          <van-cell-group class="cell-detail">
+            <van-cell class="good-count" title="数量">
+              <van-stepper
+                :max=temStockNum
+                :min="1"
+                input-width="60px"
+                integer
+                v-model="num"
+              />
+            </van-cell>
+          </van-cell-group>
+         <!-- <div class="infoBox">
             <h3 class="name">{{goodsName}}</h3>
           </div>
           <div class="infoBox">
@@ -15,82 +54,98 @@
           </div>
           <div class="infoBox">
             <span>类型：</span>
-            <!-- <Radio v-for="(item,index) in specs" :key="item.id" v-model="temSpecId" :initVal="specs[0].id" radioName="spec" :radioVal="item.id">
+            &lt;!&ndash; <Radio v-for="(item,index) in specs" :key="item.id" v-model="temSpecId" :initVal="specs[0].id" radioName="spec" :radioVal="item.id">
 
-             </Radio>-->
+             </Radio>&ndash;&gt;
             <span v-if="typeId=='1'" class="tips" slot="tips">经典系列</span>
             <span v-else-if="typeId=='2'" class="tips" slot="tips">儿童系列</span>
             <span v-else-if="typeId=='3'" class="tips" slot="tips">奶油系列</span>
             <span v-else-if="typeId=='4'" class="tips" slot="tips">尊爱系列</span>
           </div>
           <div class="infoBox">
-            <span>库存：</span>
-            <!-- <Radio v-for="(item,index) in specs" :key="item.id" v-model="temSpecId" :initVal="specs[0].id" radioName="spec" :radioVal="item.id">
-
-             </Radio>-->
             <span class="tips" slot="tips">{{'还剩'+stockNum+'件'}}</span>
           </div>
           <div class="infoBox">
             <span>数量：</span>
             <NumberInput v-model="num" :min="1" :max="temStockNum"/>
-          </div>
-          <div class="infoBox">
-            <span style="color: red" v-if="ticket!='0'" class="tips" slot="tips">{{'已经选择'+ticket+'元优惠券,立即付款可节省'+ticket+'元'}}</span>
-          </div>
-          <button class="buyBtn" @click="buy">立即购买</button>
-          <button @click="addToCart">加入购物车</button>
-          <button v-if="isCollect" @click="collect('1')">取消收藏</button>
-          <button v-else @click="collect('0')">收藏</button>
+          </div>-->
+
+          <van-button type="primary" @click="buy">立即购买</van-button>
+          <!--<button class="buyBtn" @click="buy">立即购买</button>-->
+          <van-button type="primary" @click="addToCart">加入购物车</van-button>
+          <van-button type="primary" @click="readOnline">在线阅读</van-button>
+         <!-- <button v-if="isCollect" @click="collect('1')">取消收藏</button>
+          <button v-else @click="collect('0')">收藏</button>-->
         </div>
       </div>
-      <section class="msgBox leftContainer">
-        <ul class="tagList">
-          <li :class="{selected:curIndex===index}" v-for="(item,index) in tagList" :key="'tag'+index"
-              @click="changeIndex(index)">
-            {{item}}
-          </li>
-        </ul>
-        <div class="commentBody">
-          <div class="noComment">{{description}}~</div>
-        </div>
-      </section>
-      <!--<section class="typeGoods rightContainer">
-        <div class="title">相似商品</div>
-        <ul class="list">
-          <GoodsItem
-            v-for="(item,index) in filterList"
-            :key="+item.id"
-            :id="item.id"
-            :img="item.img"
-            :name="item.name"
-            :price="item.price"
-          />
-      </ul>
+
+        <div style="margin: 20px;line-height: 30px"><span style="font-weight: bold">简介：</span>{{description}}</div>
+      </el-card>
+      <!--<section class="msgBox leftContainer">
+
+
       </section>-->
+
     </div>
 
-    <el-dialog
-      title="可使用优惠券(元)"
-      :visible.sync="dialogVisible"
-      width="30%"
-      >
-      <el-row>
-        <el-radio-group v-model="ticket" size="medium">
-          <el-radio
-            @change="checkTicket(item.id)"
-            v-for="item in ticketList"
-            :key="item.id"
-            :value="item.id"
-            :label="item.money"
-          ></el-radio>
+     <!-- <span class="name">{{goodsName}}</span>
+      <div class="good">
+       &lt;!&ndash; <div >
+          <span class="name">sssss{{goodsName}}</span>
+          <div class="title">ssss{{goodsName}}</div>
+          <div class="description">ssss{{description}}</div>
+          <div class="price">
+            <span class="sell-price">d11{{price}}</span>
+            <span class="sale-price">
+            <del>11{{price}}</del>
+          </span>
+          </div>
+        </div>&ndash;&gt;
+        <van-cell-group class="cell-detail">
+          <van-cell class="good-count" title="数量">
+            <van-stepper
+              :max="10"
+              :min="1"
+              input-width="60px"
+              integer
+              v-model="stock"
+            />
+          </van-cell>
+        </van-cell-group>
 
-        </el-radio-group>
-      </el-row>
-      <el-row style="margin: 20px;align-items: center">
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="buywithTicket">确 定</el-button>
-      </el-row>
-    </el-dialog>
+        <van-cell-group>
+          <van-cell is-link title="作者">
+            {{goodsName}}
+          </van-cell>
+          <van-cell is-link title="出版社">
+            {{goodsName}}
+          </van-cell>
+        </van-cell-group>
+        <van-cell-group class="cell-detail">
+          <van-cell @click="scrollToDetail"
+                    is-link
+                    title="查看商品详情"/>
+        </van-cell-group>
+        <div class="detail"
+             ref="detail">
+          <img :src="goodsImg">
+        </div>
+        <van-goods-action>
+          <van-goods-action-mini-btn icon="shopping-cart-o"
+                                     text="购物车"
+                                     to="/cartIndex"/>
+          <van-goods-action-mini-btn icon="wap-home"
+                                     text="首页"
+                                     to="/"/>
+          <van-goods-action-big-btn @click="addCartClick"
+                                    text="加入购物车"/>
+          <van-goods-action-big-btn @click="bugNowClick"
+                                    primary
+                                    text="立即购买"/>
+        </van-goods-action>
+      </div>
+-->
+
   </div>
 </template>
 
@@ -162,6 +217,8 @@
         goodsList: [],
         dialogVisible: false,
         isCollect:false,
+        author:'',
+        publish:'',
         temStockNum:9999,
         ticketID:'',
       }
@@ -177,13 +234,15 @@
         res
           .then((data) => {
             this.goodsImg = data.t.imgurl;
-            this.goodsName = data.t.goodsname;
+            this.goodsName = data.t.name;
             this.goodsDesc = data.t.description;
             //this.specs = data.specs;
             this.typeId = data.t.type;
             this.stockNum = data.t.stock;
             this.temStockNum=parseInt( this.stockNum);
-            this.price = data.t.price;
+            this.price = data.t.unitPrice;
+            this.author=data.t.author;
+            this.publish=data.t.publish;
             this.description = data.t.description;
             //this.getTypeGoodsList(data.typeId);
           })
@@ -207,7 +266,6 @@
           orderName: this.goodsName,
           orderNum: this.num,
           orderPrice: this.price,
-          salePrice: this.ticket,
           status:'0'
         });
         res1
@@ -229,10 +287,7 @@
           return;
         }
         //查询优惠券
-        const res = getTickets(this.clientToken);
-        res.then((data) => {
-          //alert(data.t.length)
-          if (data.t.length == 0) {
+
             //alert(11)
             const res1 = addOrder({
               goodid:this.id,
@@ -240,7 +295,6 @@
               orderName: this.goodsName,
               orderNum: this.num,
               orderPrice: this.price,
-              salePrice: this.ticket,
               status:'1'
             });
             res1
@@ -250,12 +304,7 @@
               .catch((e) => {
                 alert(e);
               })
-          } else {
-            this.dialogVisible = true;
-            this.ticketList=data.t;
-          }
-          // alert('自动付款成功！请耐心等待包裹派送~')
-        })
+
       },
       checkTicket(id){
         this.ticketID=id;
@@ -372,8 +421,8 @@
 
         .infoLeft {
           display: inline-block;
-          width: 400px;
-          height: 400px;
+          width: 200px;
+          height: 200px;
           float: left;
         }
 
@@ -418,31 +467,32 @@
           }
 
           button {
-            background-color: #b4a078;
-            width: 170px;
+            background-color: @falseColor;
+            border: none;
+            margin: 10px;
+           /* width: 130px;
             height: 50px;
             color: white;
             border: none;
-            font-size: 19px;
+            font-size: 14px;
             margin-right: 20px;
-            margin-top: 10px;
+            margin-top: 10px;*/
 
             &:hover {
               opacity: 0.8;
             }
           }
 
-          .buyBtn {
+          /*.buyBtn {
             border: 1px solid #b4a078;
             color: #b4a078;
             background-color: #f5f3ef;
-          }
+          }*/
         }
       }
 
       .msgBox {
         margin: 50px 0;
-        border: 1px solid @borderColor;
         padding-top: 0;
 
         .tagList {
@@ -671,4 +721,88 @@
       cursor: not-allowed;
     }
   }
+
+ /* .good {
+    padding-bottom :50px;
+    background-color: #eee;
+
+    .back-btn {
+      position :fixed;
+      z-index: 999;
+      top :10px;
+      left :10px;
+      width :30px;
+      height :30px;
+      border-radius :50%;
+      color: #fff;
+      line-height :32px;
+      text-align: center;
+      background-color :rgba(102, 102, 102, 0.4);
+
+      i {
+        font-weight :700;
+          margin-left :-2px;
+        margin-top :4px;
+      }
+    }
+  }
+
+
+
+  .info {
+    padding:4px 10px;
+    background-color: #eee;
+    height: 300px;
+    .name {
+      font-size :18px;
+      font-weight:bold;
+      line-height:28px;
+      margin-top:6px;
+    }
+
+    .title {
+      font-size:14px;
+      color: #4d525d;
+      line-height :26px;
+      word-break: break-all;
+    }
+
+    .description {
+      font-size :12px;
+      color :#969696;
+      line-height :18px;
+      word-break: break-all;
+    }
+
+    .price {
+      margin-top: 10px;
+
+      .sell-price {
+        color :#f00;
+        font-size :18px;
+        margin-right: 10px;
+      }
+
+      .sale-price {
+        color :#969696;
+        font-size :12px;
+      }
+    }
+  }
+
+  .van-cell-group {
+    border-top: 1px solid #eee;
+  }
+
+  .cell-detail {
+    margin-top :6px;
+    margin-bottom: 6px;
+  }
+
+
+
+  .detail img {
+    width:100%;
+    height:auto;
+  }*/
 </style>

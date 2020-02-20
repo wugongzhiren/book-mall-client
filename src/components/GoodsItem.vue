@@ -1,4 +1,5 @@
 <template>
+    <el-card>
     <li class="GoodsItem">
       <div class="imgBox">
         <img :src="img" alt="商品图片" @click="navTo('/mall/goods/'+id)"/>
@@ -8,6 +9,7 @@
         <span class="price">{{'¥'+price}}</span>
       </div>
     </li>
+    </el-card>
 </template>
 
 <script>
@@ -47,8 +49,8 @@ export default {
 @import "../assets/css/var.less";
 .GoodsItem{
   display: inline-block;
-  width: 266px;
-  height: 360px;
+  width: 200px;
+  height: 300px;
   overflow: hidden;
   &:hover{
     img{
@@ -57,7 +59,7 @@ export default {
   }
   .imgBox{
     width: 100%;
-    height: 266px;
+    height: 200px;
     overflow: hidden;
     img{
       width: 100%;
@@ -67,7 +69,7 @@ export default {
     }
   }
   .goodsInfo{
-    background-color: #87D0E3;
+    background-color:#000;
     width: 100%;
     height: 60px;
     font-size: 14px;

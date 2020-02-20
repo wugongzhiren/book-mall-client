@@ -1,26 +1,22 @@
 <template>
   <div class="ClientLogin" :style="{width:width+'px',height:height+'px'}">
     <div class="content">
-     <!-- <h1>蛋糕店网购平台</h1>-->
-      <!--<div class="tag">
-        <span @click="setIndex(0)" :class="{selected:curIndex===0}">登录</span>
-        <span @click="setIndex(1)" :class="{selected:curIndex===1}">注册</span>
-      </div>-->
-      <div class="formBox" v-show="curIndex===0">
+      <div v-show="curIndex===0">
 
-        <input v-model="userid" type="text" placeholder="账号" />
-        <input v-model="signPwd" type="password" placeholder="密码" />
-        <button style="background-color: #87D0E3" @click="login">登录</button>
-        <button style="background-color: #87D0E3" @click="setIndex(1)">注册</button>
+        <el-input v-model="userid" type="text" placeholder="请输入账号" />
+        <br>
+        <el-input style="margin-top: 20px" v-model="signPwd" type="password" placeholder="请输入密码" />
+        <el-button style="margin-top: 20px" type="danger" @click="login">登录</el-button>
+        <el-button type="danger"  @click="setIndex(1)">注册</el-button>
       </div>
       <div class="formBox" v-show="curIndex===1">
-        <input v-model="userid" type="text" placeholder="请输入邮箱或者手机号" />
-        <input v-model="signPwd" type="password" placeholder="请输入密码" />
-        <input v-model="signName" type="text" placeholder="请输入收件人姓名" />
-        <input v-model="phone" type="text" placeholder="请输入联系电话" />
-        <input v-model="signAddress" type="text" placeholder="请输入收件地址" />
-        <button style="background-color: #87D0E3" @click="signup">注册</button>
-        <button style="background-color: #87D0E3" @click="setIndex(0)">返回登陆</button>
+        <el-input style="margin-top: 20px" v-model="userid" type="text" placeholder="请输入邮箱或者手机号" />
+        <el-input style="margin-top: 20px" v-model="signPwd" type="password" placeholder="请输入密码" />
+        <el-input style="margin-top: 20px" v-model="signName" type="text" placeholder="请输入收件人姓名" />
+        <el-input style="margin-top: 20px" v-model="phone" type="text" placeholder="请输入联系电话" />
+        <el-input style="margin-top: 20px" v-model="signAddress" type="text" placeholder="请输入收件地址" />
+        <el-button style="margin-top: 20px" type="danger"  @click="signup">注册</el-button>
+        <el-button type="danger" @click="setIndex(0)">返回登陆</el-button>
       </div>
     </div>
   </div>
@@ -117,7 +113,7 @@ export default {
 <style scoped lang="less">
 @import "../../assets/css/var.less";
 .ClientLogin{
-  background-color: @bgColor;
+  background-color: #eee;
   position: relative;
   .content{
     width: 300px;
@@ -144,10 +140,10 @@ export default {
         padding: 10px 0;
         cursor: pointer;
       }
-      .selected{
+     /* .selected{
         border-bottom: 2px solid @secondColor;
         color:@secondColor
-      }
+      }*/
     }
     input{
       border-radius: 0;
@@ -158,9 +154,9 @@ export default {
       border: 1px solid @borderColor;
       margin-bottom: 10px;
     }
-    button{
-      width: 90%;
-      background: @secondColor;
+    /*button{
+      width: 100%;
+
       box-shadow: none;
       border: 0;
       border-radius: 3px;
@@ -168,7 +164,7 @@ export default {
       color: #fff;
       cursor: pointer;
       margin-top: 20px;
-    }
+    }*/
   }
 }
 </style>

@@ -21,6 +21,14 @@
           width="180">
         </el-table-column>
         <el-table-column
+          prop="author"
+          label="作者">
+        </el-table-column>
+        <el-table-column
+          prop="publish"
+          label="出版社">
+        </el-table-column>
+        <el-table-column
           prop="unitPrice"
           label="单价">
         </el-table-column>
@@ -55,6 +63,10 @@
         width="40%"
         center>
         <el-row>书名：<el-input style="width: 480px" v-model="name" placeholder="请输入书名"></el-input></el-row>
+        <br>
+        <el-row>作者：<el-input style="width: 480px" v-model="author" placeholder="请输入作者"></el-input></el-row>
+        <br>
+        <el-row>出版社：<el-input style="width: 480px" v-model="publish" placeholder="请输入出版社"></el-input></el-row>
         <br>
         <el-row>类型：<el-radio v-model="type" label="1">国学</el-radio>
           <el-radio v-model="type" label="2">教辅</el-radio>
@@ -127,6 +139,8 @@
         description: '',
         stock: 0,
         unitPrice: 0,
+        author:'',
+        publish:'',
         flag:'A',
       }
     },
@@ -174,6 +188,8 @@
         this.description = row.description;
         this.stock = row.stock;
         this.unitPrice=row.unitPrice;
+        this.author=row.author;
+        this.publish=row.publish;
         this.flag='U';
         this.centerDialogVisible=true;
       },
@@ -181,7 +197,7 @@
         deleteGoods(row.id);
       },
       saveChange() {
-        if(this.name==''||this.type==''||this.imgUrl==''||this.description==''||this.stock==''||this.unitPrice==''){
+        if(this.name==''||this.type==''||this.imgUrl==''||this.description==''||this.stock==''||this.unitPrice==''||this.author==''||this.publish==''){
           this.$message('请输入完整信息');
           return;
         }
@@ -195,6 +211,8 @@
             description: this.description,
             stock: this.stock,
             unitPrice: this.unitPrice,
+            author:this.author,
+            publish:this.publish,
             flag:this.flag
           });
           res
@@ -206,6 +224,8 @@
               this.description ='';
               this.stock =0;
               this.unitPrice=0;
+              this.author='';
+              this.publish='';
               this.flag='A';
               if (data.code == 200) {
                 alert("操作成功!");

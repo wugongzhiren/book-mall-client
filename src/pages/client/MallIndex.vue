@@ -70,7 +70,7 @@
                       :topic="item.name"
                       @click.native="showGood(item.id)"
                       class="discover-li"
-                      v-for="(item,index) in bookList.slice(0,2)"/></backgroundImg>
+                      v-for="(item,index) in bookList.slice(0,2)"/>
     </ul>
     <ul class="discover-ul">
       <backgroundImg :desc="item.description"
@@ -79,7 +79,7 @@
                       :topic="item.name"
                       @click.native="showGood(item.id)"
                       class="discover-li"
-                      v-for="item in bookList.slice(2,5)"></backgroundImg>
+                      v-for="item in bookList.slice(2,5)"/>
     </ul>
   </good-item>
 </div>
@@ -225,6 +225,10 @@ export default {
 
     searchTip(tip){
       alert(tip)
+    },
+    showGood(id){
+      this.$router.push('/mall/goods/'+id);
+      //navTo('/mall/goods/'+id)";
     },
     inputTextChange(text){
     },

@@ -8,30 +8,40 @@
     <el-row>
     <header>
       <div class="container clear">
-        <span class="title" @click="navTo('/mall')"> 欢迎<span style="color: red" @click="navTo('/login')">登录</span>字里行间网上书店</span>
+        <!--<div  v-if="clientToken">
+          <span class="name">欢迎您</span>
+          <span @click="navTo('/mall/personal')">个人中心</span>
+          <span @click="logout">退出登录</span>
+
+        </div>-->
+
+          <span class="title" @click="navTo('/mall')"> 欢迎<span v-if="clientToken" >光临</span><span v-else style="color: red" @click.stop="navTo('/login')">登录</span>字里行间网上书店</span>
         <!--<i class="iconfont icon-search" @click="searchConfirm"/>
         <input  class="TextInput" v-model="searchText" placeholder="请输入商品关键字"/>-->
 
-        <div style="margin-left: 400px;padding-top: 16px">
-        <el-input style="width: 320px" placeholder="搜索关键字" v-model="input3" class="input-with-select">
-          <el-select v-model="select" slot="prepend" placeholder="请选择">
-            <el-option label="按书名" value="1"></el-option>
-            <el-option label="按作者" value="2"></el-option>
-            <el-option label="按类别" value="3"></el-option>
-          </el-select>
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
+        <div style="margin-left: 300px;">
+          <van-search
+            v-model="searchText"
+            show-action
+            style="width: 400px;"
+            placeholder="请输入书名、作者或者类别"
+          >
+            <div slot="action" @click="searchConfirm">搜索</div>
+          </van-search>
+         <!-- <van-search v-model="value" style="width: 400px;" background=" #F1F1F1" placeholder="请输入搜索关键词" >
+
+          </van-search>-->
         </div>
-        <div class="right" v-if="clientToken">
+        <!--<div class="right" v-if="clientToken">
           <span class="name">欢迎您</span>
           <span @click="navTo('/mall/personal')">个人中心</span>
           <span @click="logout">退出登录</span>
         </div>
         <div class="right" v-else>
 
-        </div>
+        </div>-->
 
-        <div class="right" > <el-button type="danger" size="small"  icon="el-icon-shopping-cart-full">购物车</el-button><el-button type="danger"  size="small" icon="el-icon-present">我的订单</el-button></div>
+        <div class="right" > <el-button type="danger" @click="navTo('/mall/personal/cart')" size="small"  icon="el-icon-shopping-cart-full">购物车</el-button><el-button type="danger"  @click="navTo('/mall/personal')" size="small" icon="el-icon-user">个人中心</el-button><el-button type="danger"  @click="logout" size="small">退出登录</el-button></div>
       </div>
     </header>
 

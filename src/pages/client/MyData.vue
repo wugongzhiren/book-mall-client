@@ -1,6 +1,46 @@
 <template>
   <div class="MyData">
-    <ul>
+    <van-form @submit="updateUserData">
+      <van-field
+        v-model="id"
+        name="用户ID"
+        label="用户ID"
+        placeholder="用户ID"
+        readonly
+      />
+      <van-field
+        v-model="nickname"
+        name="昵称"
+        label="昵称"
+        placeholder="昵称"
+        :rules="[{ required: true, message: '请填写昵称' }]"
+      />
+      <van-field
+        v-model="address"
+        name="地址"
+        label="地址"
+        placeholder="地址"
+        :rules="[{ required: true, message: '请填写地址' }]"
+      />
+      <van-field
+        v-model="phone"
+        name="手机"
+        label="手机"
+        placeholder="手机"
+        :rules="[{ required: true, message: '请填写手机' }]"
+      />
+      <div style="margin: 16px;">
+        <van-button round block style="background-color: #ff5074;border: none" type="danger" native-type="submit">
+          提交
+        </van-button>
+
+      </div>
+    </van-form>
+
+    <van-button round block style="margin-left: 16px;margin-right:16px;width:940px;background-color: #ff5074;margin-top: 20px" @click="showPopup" type="danger">
+      修改密码
+    </van-button>
+    <!--<ul>
       <li>
         <span>账号</span>
         <p>{{id}}</p>
@@ -22,15 +62,49 @@
         <button @click="showPopup">修改密码</button>
       </li>
     </ul>
-    <button @click="updateUserData" class="saveBtn">保存</button>
-    <Popup title="修改密码" @popupClose="closePopup" v-show="popupShow">
+    <button @click="updateUserData" class="saveBtn">保存</button>-->
+    <el-dialog
+      title="修改密码"
+      :visible.sync="popupShow"
+      width="30%"
+    >
+      <van-form @submit="updatePwd">
+        <van-field
+          v-model="oldPwd"
+          name="原密码"
+          label="原密码"
+          placeholder="原密码"
+          :rules="[{ required: true, message: '请填写原密码' }]"
+        />
+        <van-field
+          v-model="newPwd"
+          name="新密码"
+          label="新密码"
+          placeholder="新密码"
+          :rules="[{ required: true, message: '请填写新密码' }]"
+        />
+        <van-field
+          v-model="confirmPwd"
+          name="确认新密码"
+          label="确认新密码"
+          placeholder="确认新密码"
+          :rules="[{ required: true, message: '请填写确认新密码' }]"
+        />
+        <div style="margin: 16px;">
+          <van-button round block style="background-color: #ff5074;border: none" type="danger" native-type="submit">
+            提交
+          </van-button>
+        </div>
+      </van-form>
+    </el-dialog>
+   <!-- <Popup title="修改密码" @popupClose="closePopup" v-show="popupShow">
       <div class="popupContent" slot="popupContent">
         <input type="password" v-model="oldPwd" placeholder="请输入原密码" />
         <input type="password" v-model="newPwd" placeholder="请输入新密码" />
         <input type="password" v-model="confirmPwd" placeholder="请再次输入新密码" />
         <button @click="updatePwd">确认修改</button>
       </div>
-    </Popup>
+    </Popup>-->
   </div>
 </template>
 
@@ -90,10 +164,6 @@ export default {
       this.popupShow = true;
     },
     updatePwd(){
-      if(this.oldPwd==''||this.newPwd==''||this.confirmPwd==''){
-        alert('请输入密码！');
-        return;
-      }
       if(this.newPwd!==this.confirmPwd){
         alert('两次输入的密码不一致！');
         return;

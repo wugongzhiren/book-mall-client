@@ -1,30 +1,58 @@
 <template>
   <div>
-    <el-button>数据库数据备份</el-button>
-    <el-button>数据库数据恢复</el-button>
+    <el-button @click="backUp">数据库数据备份</el-button>
+    <el-button @click="show = true">数据库数据恢复</el-button>
+    <p style="margin: 20px;font-family: 黑体;color: red;font-size: larger">{{msg}}</p>
+    <el-dialog
+      title="提示"
+      :visible.sync="show"
+      width="30%"
+      center>
+    <div> <span>请确认是否恢复数据？</span></div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="show = false">取 消</el-button>
+    <el-button type="primary" @click="restore">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
+
 </template>
 
 <script>
-import {getSuggests} from '../../api/client';
+  import {backUpDb, restoreDb} from '../../api/client';
 export default {
   name: 'EditUser',
   computed:{
   },
   data(){
   	return{
-  		suggests:[]
+  	  msg:'',
+      show:false,
   	}
   },
-  mounted(){
-  	const res = getSuggests();
-  	res
-  	.then((data)=>{
-  		this.suggests = data.t;
-  	})
-  	.catch((e)=>{
-  		alert(e)
-  	})
+  methods:{
+    backUp(){
+      const res = backUpDb();
+      res
+        .then((data) => {
+          this.msg=data.msg;
+
+        })
+        .catch((e) => {
+          alert(e);
+        })
+    },
+    restore(){
+      const res = restoreDb();
+      res
+        .then((data) => {
+          alert("恢复成功")
+
+        })
+        .catch((e) => {
+          alert(e);
+        })
+    }
   },
 
 

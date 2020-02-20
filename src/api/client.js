@@ -226,7 +226,6 @@ export function addOrder(data) {
   params.append('orderName', data.orderName);
   params.append('orderNum', data.orderNum);
   params.append('orderPrice',data.orderPrice);
-  params.append('salePrice',data.salePrice);
   params.append('status',data.status);
   const res=axios.post('/api/goods/addOrder', params) ;
   return new Promise((resolve,reject)=>{
@@ -480,6 +479,32 @@ export function sendComment(data) {
 //关键词搜索商品
 export function searchGoods(keyword) {
   const res = axios.get('/api/goods/getByKeyWord?keyword=' + keyword);
+  return new Promise((resolve,reject)=>{
+    res
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
+}
+//关键词搜索商品
+export function backUpDb() {
+  const res = axios.get('/api/sys/backupDb');
+  return new Promise((resolve,reject)=>{
+    res
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
+}
+
+export function restoreDb() {
+  const res = axios.get('/api/sys/resetDb');
   return new Promise((resolve,reject)=>{
     res
       .then(res => {
