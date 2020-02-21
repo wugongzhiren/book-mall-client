@@ -1,12 +1,5 @@
 <template>
   <div class="MallIndex">
-   <!-- <el-row>
-    <FadeSwiper class="swiperBox" height="400px">
-      <img class="banner" slot="item1" v-bind:src="img1" />
-      <img class="banner" slot="item2" v-bind:src="img2" />
-      <img class="banner" slot="item3" v-bind:src="img3" />
-    </FadeSwiper>
-    </el-row>-->
     <div class="home-swipe">
       <div class="home-swipe-head">
         <span class="recommend">今日推荐</span>
