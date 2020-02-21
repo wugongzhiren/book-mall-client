@@ -70,7 +70,7 @@ export default {
     }
   }
   .content{
-    width: 980px;
+    width: 900px;
     margin-left: 30px;
     overflow: hidden;
     display: inline-block;

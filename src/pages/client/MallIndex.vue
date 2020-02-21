@@ -83,60 +83,6 @@
     </ul>
   </good-item>
 </div>
-<!--
-<el-row style="margin-top: 10px">
-      <div style="margin:0 auto">
-        <ul style="margin:0 auto">
-          <TypeItem
-            v-for="(item,index) in typeList"
-            :key="+item.id"
-            :id="item.id"
-            :img="item.img"
-            :name="item.name"
-          />
-        </ul>
-      </div>
-</el-row>-->
-
-
-  <!--  <el-row style="margin-top: 50px">
-      <hr >
-    &lt;!&ndash;  <section class="hotGoods section">
-      <SectionHeader title="新品推荐" tips="最新商品为您推荐" />
-                <div class="content">
-                  <ul class="left">
-                    <GoodsItem
-                      :id="goodsList[0].id"
-                      :img="goodsList[0].imgurl"
-                      :name="goodsList[0].goodsname"
-                      :price="goodsList[0].price"
-                    />
-                  </ul>
-                  <ul class="right">
-                    <GoodsItem
-                      v-for="(item,index) in goodsList"
-                      :style="{marginBottom: index<=2?'10px':'0px'}"
-                      :key="+item.id"
-                      :id="item.id"
-                      :img="item.imgurl"
-                      :name="item.goodsname"
-                      :price="item.price"
-                    />
-                  </ul>
-                </div>
-    </section>&ndash;&gt;
-    </el-row>-->
-    <!--<el-row>
-      <video-player
-        style="width:1000px;height: 400px;margin:0 auto"
-        ref="videoPlayer"
-        class="video-player vjs-custom-skin"
-        :playsinline="true"
-        :options="playerOptions"
-        @play="onPlayerPlay($event)"
-        @pause="onPlayerPause($event)"
-      />
-    </el-row>-->
 
   </div>
 </template>
@@ -308,6 +254,7 @@ export default {
   }
   .flashSale{
     .content{
+      font-size: 18px;
       border: 1px solid @borderColor;
       height: 676px;
       position: relative;

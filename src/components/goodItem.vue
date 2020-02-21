@@ -28,6 +28,7 @@
 
 <style lang="less" scoped>
   .good-item {
+    font-size :18px;
     background-color:#fff;
     padding :4px 6px;
     margin-bottom: 6px;

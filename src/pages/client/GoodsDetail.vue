@@ -79,7 +79,7 @@
         </div>
       </div>
 
-        <div style="margin: 20px;line-height: 30px"><span style="font-weight: bold">简介：</span>{{description}}</div>
+        <div style="margin: 20px;font-size:18px;line-height: 30px"><span style="font-weight: bold">简介：</span>{{description}}</div>
       </el-card>
       <!--<section class="msgBox leftContainer">
 
@@ -228,7 +228,9 @@
       changeIndex(i) {
         this.curIndex = i;
       },
-
+      readOnline(){
+        this.$router.push("/ebook")
+      },
       getGoodsInfo(id) {
         const res = getGoodsInfo(id);
         res
@@ -360,48 +362,10 @@
             })
         }
       },
-      collect(flag){
-        if (!this.clientToken) {
-          alert('请先登录！');
-          return;
-        }
-        const res1 = saveCollect({
-          goodid:this.id,
-          userid: this.clientToken,
-          flag:flag
-        });
-        res1
-          .then(() => {
-            if(flag=='0'){
-              alert('收藏成功！请前往 个人中心->我的收藏 查看')
-            }
-            this.getCollect();
-          })
-          .catch((e) => {
-            alert(e);
-          })
-      },
-      getCollect(){
-        const res1 = getGoodCollects(
-          this.clientToken,this.id
-        );
-        res1
-          .then((data) => {
-            if(data.t!=null){
-              this.isCollect=true;
-            }else{
-              this.isCollect=false;
-            }
-          })
-          .catch((e) => {
-            alert(e);
-          })
-      }
     },
       mounted() {
         this.getGoodsInfo(this.id);
 
-        this.getCollect();
         //this.getComment(this.id);
       },
     }

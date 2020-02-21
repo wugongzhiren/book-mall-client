@@ -69,13 +69,14 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
+    font-size: 18px;
     margin-top: -180px;
     margin-left: -150px;
     text-align: center;
     overflow: hidden;
     h3{
       color:@secondColor;
-      font-size: 50px;
+      font-size: 18px;
     }
     p{
       margin-top: 20px;

@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import store from '@/store';
-
+import Ebook from '@/Ebook'
 import Mall from '@/pages/client/Mall';
 import MallShow from '@/pages/client/MallShow';
 import MallIndex from '@/pages/client/MallIndex';
 import MallLogin from '@/pages/client/MallLogin';
 import MySuggest from '@/pages/client/MySuggest';
-import MyCollects from '@/pages/client/MyCollects';
+import Reader from '@/pages/client/Reader';
 import MyTicket from '@/pages/client/MyTicket';
 import GoodsDetail from '@/pages/client/GoodsDetail';
 import GoodsList from '@/pages/client/GoodsList';
@@ -33,6 +33,10 @@ Vue.use(Router);
 
 let router = new Router({
   routes: [
+    {
+      path: '/ebook',
+      component: Ebook
+    },
     {
       path:"/",
       redirect:"/mall"
@@ -105,9 +109,9 @@ let router = new Router({
                 requireLogin:true,
               },
             },{
-              path: 'myCollects',
-              name: 'MyCollects',
-              component: MyCollects,
+              path: 'reader',
+              name: 'Reader',
+              component: Reader,
               meta: {
                 requireLogin:true,
               },

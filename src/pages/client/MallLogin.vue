@@ -126,7 +126,7 @@ export default {
     overflow: hidden;
     h3{
       color:@secondColor;
-      font-size: 50px;
+      font-size: 18px;
     }
     .tag{
       margin-top: 20px;

@@ -343,7 +343,7 @@ export default {
     overflow: hidden;
     margin-top: 80px;
     .footerItem{
-      width: 33%;
+      width: 30%;
       height: 210px;
       position: relative;
       top: 45px;
@@ -357,6 +357,7 @@ export default {
       }
     }
     .service{
+      font-size: 18px;
       border-right: 1px solid @borderColor;
       span{
         display: inline-block;
@@ -379,6 +380,7 @@ export default {
       }
     }
     .intro{
+      font-size: 18px;
       border-right: 1px solid @borderColor;
       .intro-p{
         font-size: 13px;
@@ -401,6 +403,7 @@ export default {
       }
     }
     .code{
+      font-size: 18px;
       img{
         display: block;
         margin: 0 auto;
