@@ -43,39 +43,12 @@
               />
             </van-cell>
           </van-cell-group>
-         <!-- <div class="infoBox">
-            <h3 class="name">{{goodsName}}</h3>
-          </div>
-          <div class="infoBox">
-            <p>{{goodsDesc}}</p>
-          </div>
-          <div class="infoBox">
-            <h3 class="price">{{'¥'+price}}</h3>
-          </div>
-          <div class="infoBox">
-            <span>类型：</span>
-            &lt;!&ndash; <Radio v-for="(item,index) in specs" :key="item.id" v-model="temSpecId" :initVal="specs[0].id" radioName="spec" :radioVal="item.id">
 
-             </Radio>&ndash;&gt;
-            <span v-if="typeId=='1'" class="tips" slot="tips">经典系列</span>
-            <span v-else-if="typeId=='2'" class="tips" slot="tips">儿童系列</span>
-            <span v-else-if="typeId=='3'" class="tips" slot="tips">奶油系列</span>
-            <span v-else-if="typeId=='4'" class="tips" slot="tips">尊爱系列</span>
-          </div>
-          <div class="infoBox">
-            <span class="tips" slot="tips">{{'还剩'+stockNum+'件'}}</span>
-          </div>
-          <div class="infoBox">
-            <span>数量：</span>
-            <NumberInput v-model="num" :min="1" :max="temStockNum"/>
-          </div>-->
 
           <van-button type="primary" @click="buy">立即购买</van-button>
-          <!--<button class="buyBtn" @click="buy">立即购买</button>-->
           <van-button type="primary" @click="addToCart">加入购物车</van-button>
           <van-button type="primary" @click="readOnline">在线阅读</van-button>
-         <!-- <button v-if="isCollect" @click="collect('1')">取消收藏</button>
-          <button v-else @click="collect('0')">收藏</button>-->
+
         </div>
       </div>
 
