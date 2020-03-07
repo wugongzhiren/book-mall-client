@@ -1,8 +1,8 @@
 <template>
   <div class="Mall">
 
-    <el-row>
-      <img style="width: 900px;height: 250px;position: relative;left:22%
+    <el-row v-if="adimg!=''" type="flex" justify="center">
+      <img v-if="adimg!=''" style="width: 900px;height: 250px;align:middle;position: relative;
 " :src="adimg" alt=""/>
     </el-row>
     <el-row>
@@ -19,7 +19,7 @@
         <!--<i class="iconfont icon-search" @click="searchConfirm"/>
         <input  class="TextInput" v-model="searchText" placeholder="请输入商品关键字"/>-->
 
-        <div style="margin-left: 300px;">
+        <div style="margin-left: 400px;">
           <van-search
             v-model="searchText"
             show-action
@@ -69,7 +69,7 @@
         </div>
         <div class="code footerItem">
           <p class="title">欢迎关注微信公众号</p>
-          <div id="qrcode"></div>
+          <div id="qrcode"><img style="width: 100px" src="/src/assets/img/QR.jpg"></div>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@ export default {
     backToTop(){
       backToTop();
     },
-    qrcode() {
+   /* qrcode() {
       //this.getIPS();
       const res =  getIp();
       res
@@ -173,10 +173,10 @@ export default {
         })
         .catch((e) => {
           alert(e);
-        });
+        });*/
 
 
-    },
+
     watchScrollTop(){
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if(scrollTop>150){
@@ -205,6 +205,18 @@ export default {
   mounted(){
     document.addEventListener('scroll',this.watchScrollTop,false);
     //this.qrcode();
+    const res = getAds();
+    res
+      .then((data) => {
+        if(data.t.length>0) {
+          //this.id = data.t[0].id;
+          //this.tips = data.t[0].tips;
+          this.adimg = data.t[0].img;
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      })
   },
 
   beforeDestroyed(){
@@ -244,7 +256,7 @@ export default {
 }
 
 .Mall{
-  height: 1200px;
+  height: 1400px;
  /* width: 100%;*/
   header{
     width: 100%;

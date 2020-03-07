@@ -123,6 +123,7 @@ export default {
 		line-height: 40px;
 		span{
 			float: left;
+      font-size: 18px;
 		}
 	}
 	.content{
@@ -133,6 +134,8 @@ export default {
 		padding: 5px;
 		.ordersTable{
 			width: 100%;
+      font-size: 18px;
+      font-weight: lighter;
 			th{
 				text-align: center;
 			}

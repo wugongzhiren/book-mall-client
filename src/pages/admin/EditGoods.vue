@@ -139,12 +139,14 @@
 
   .EditGoods {
     header {
+
       width: 100%;
       height: 40px;
       line-height: 40px;
 
       span {
         float: left;
+        font-size: 18px;
       }
     }
 

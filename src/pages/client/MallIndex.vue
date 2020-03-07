@@ -15,7 +15,7 @@
     </div>
 <div>
   <good-item describe="每日热销指南"
-             title="热销榜">
+             title="热销榜" moreLink="更多">
     <ul class="hot-ul">
       <li :key="item.id"
           @click="showGood(item.id)"
@@ -46,7 +46,7 @@
         </div>
         <div class="price">
             <span class="new-price">
-              {{item.unitPrice}}
+              ￥{{item.unitPrice}}
             </span>
         </div>
         </el-card>
@@ -537,6 +537,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space :nowrap;
+      margin: 10px;
     }
 
     .sale-price {
@@ -554,18 +555,20 @@ export default {
     width :25%;
     overflow: hidden;
     padding: 2px 4px;
-
+    text-align :center;
     img {
       height: 200px;
     }
 
     .title {
+      margin: 10px;
       overflow: hidden;
       text-overflow :ellipsis;
       white-space: nowrap;
     }
 
     .new-price {
+      margin: 10px;
       color :#ff4c0a;
     }
 

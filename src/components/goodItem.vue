@@ -4,10 +4,6 @@
       <span class="border"></span>
       <span class="title">{{title}}</span>
       <span class="describe">{{describe}}</span>
-     <!-- <span v-if="moreLink">
-        <router-link :to="moreLink"
-            class="more">更多</router-link>
-      </span>-->
     </div>
     <slot></slot>
   </div>

@@ -76,7 +76,10 @@ export default {
 .Backstage{
   overflow: hidden;
   .bsLeft{
+    font-size: 18px;
     width: 15%;
+    color: white;
+    background-color: #ff5074;
     height: 100%;
     display: inline-block;
     overflow: hidden;
@@ -84,7 +87,7 @@ export default {
     .logo{
       width: 100%;
       height: 70px;
-      background-color: @mainColor;
+      background-color: #ff5074;
       color:white;
       font-size: 25px;
       overflow: hidden;
@@ -93,17 +96,17 @@ export default {
     }
     ul{
       width: 100%;
-      background-color: #313541;
+      background-color: #ff5074;
       li{
         width: 100%;
-        color:@fontDefaultColor;
+        color:white;
         height: 45px;
         line-height: 45px;
         cursor: pointer;
         padding: 0 20px;
       }
       .selected{
-        background-color: #272a34;
+        background-color: #ff260b;
         color:white;
       }
     }

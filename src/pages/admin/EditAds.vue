@@ -12,7 +12,7 @@
         <span>图片公告：</span>
         <TextInput class="long" placeholder="请输入图片地址" v-model="img" />
       </div>
-      <el-button type="primary" @click="saveChange">保存</el-button>
+      <el-button type="danger" @click="saveChange">保存</el-button>
     </div>
   </div>
 </template>
@@ -90,6 +90,7 @@
 
       span {
         float: left;
+        font-size: 18px;
       }
     }
 
@@ -97,7 +98,7 @@
       width: 100%;
       background-color: white;
       padding: 10px;
-
+      font-size: 18px;
       textarea {
         width: 80%;
         height: 300px;

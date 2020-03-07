@@ -329,6 +329,7 @@ export function addGoods(data){
   params.append('unitPrice', data.unitPrice);
   params.append('author', data.author);
   params.append('publish', data.publish);
+  params.append('offlineUrl', data.offlineUrl);
   params.append('flag', data.flag);
   const res=axios.post('/api/goods/add', params) ;
   return new Promise((resolve,reject)=>{

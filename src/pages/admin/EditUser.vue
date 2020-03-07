@@ -96,6 +96,7 @@ export default {
 		line-height: 40px;
 		span{
 			float: left;
+      font-size: 18px;
 		}
 		div{
 			height: 20px;

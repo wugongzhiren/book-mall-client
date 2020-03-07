@@ -1,12 +1,12 @@
 <template>
   <div class="ebook">
-    <title-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"></title-bar>
+    <!--<title-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"></title-bar>-->
     <div class="read-wrapper">
       <div id="read"></div>
       <div class="mask">
-        <div class="left" @click="prevPage"></div>
+        <div class="left"  @click="prevPage"><i class="el-icon-arrow-left"></i></div>
         <div class="center" @click="toggleTitleAndMenu"></div>
-        <div class="right" @click="nextPage"></div>
+        <div class="right" @click="nextPage"><i class="el-icon-arrow-right"></i></div>
       </div>
     </div>
   <!--  <menu-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"
@@ -28,7 +28,6 @@
 import TitleBar from '@/components/TitleBar'
 import MenuBar from '@/components/MenuBar'
 import Epub from 'epubjs'
-const DOWNLOAD_URL = '/static/2018_Book_AgileProcessesInSoftwareEngine.epub'
 global.ePub = Epub
 export default {
   components: {
@@ -88,6 +87,9 @@ export default {
       navigation: {}
     }
   },
+  offlineUrl() {
+    return "/static/"+this.$route.params.offlineUrl;
+  },
   methods: {
     // 根据链接跳转到指定位置
     jumpTo(href) {
@@ -146,9 +148,10 @@ export default {
       }
     },
     // 电子书的解析和渲染
-    showEpub() {
+    showEpub(url) {
       // 生成Book对象
-      this.book = new Epub(DOWNLOAD_URL)
+
+      this.book = new Epub("/static/"+url)
       // 通过Book.renderTo生成Rendition对象
       this.rendition = this.book.renderTo('read', {
         width: window.innerWidth,
@@ -180,7 +183,8 @@ export default {
     }
   },
   mounted() {
-    this.showEpub()
+    var url=this.$route.params.offlineUrl;
+    this.showEpub(url)
   }
 }
 </script>
@@ -192,7 +196,7 @@ export default {
   .read-wrapper {
     .mask {
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
       z-index: 100;
       display: flex;
@@ -205,6 +209,7 @@ export default {
         flex: 1;
       }
       .right {
+
         flex: 0 0 px2rem(100);
       }
     }

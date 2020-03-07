@@ -34,7 +34,7 @@ Vue.use(Router);
 let router = new Router({
   routes: [
     {
-      path: '/ebook',
+      path: '/ebook/:offlineUrl',
       component: Ebook
     },
     {

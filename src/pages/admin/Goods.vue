@@ -2,7 +2,7 @@
   <div class="Goods">
     <header class="clear">
       <span>商品管理</span>
-      <el-button type="primary" @click="centerDialogVisible = true">添加入库</el-button>
+      <el-button type="danger" @click="centerDialogVisible = true">添加入库</el-button>
     </header>
     <!--<Tag :tagList="tagTextList" @indexChange="changeTag"/>-->
     <div class="content">
@@ -33,8 +33,12 @@
           label="单价">
         </el-table-column>
         <el-table-column
-          prop="stock"
-          label="库存">
+        prop="stock"
+        label="库存">
+      </el-table-column>
+        <el-table-column
+          prop="offlineUrl"
+          label="离线地址">
         </el-table-column>
         <el-table-column
           label="商品预览">
@@ -81,11 +85,13 @@
         <br>
         <el-row>URL：<el-input style="width: 480px" v-model="imgUrl" placeholder="请输入图片URL"></el-input></el-row>
         <br>
+        <el-row>在线阅读地址：<el-input style="width: 480px" v-model="offlineUrl" placeholder="请输入在线阅读地址"></el-input></el-row>
+        <br>
         <el-row>简介：<el-input style="width: 480px" type="textarea" :rows="4" v-model="description" placeholder="请输入简介内容"></el-input></el-row>
 
         <span slot="footer" class="dialog-footer">
     <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="saveChange">确 定</el-button>
+    <el-button type="danger" @click="saveChange">确 定</el-button>
   </span>
       </el-dialog>
       <!--<ul class="clear">
@@ -141,6 +147,7 @@
         unitPrice: 0,
         author:'',
         publish:'',
+        offlineUrl:'',
         flag:'A',
       }
     },
@@ -190,6 +197,7 @@
         this.unitPrice=row.unitPrice;
         this.author=row.author;
         this.publish=row.publish;
+        this.offlineUrl=row.offlineUrl;
         this.flag='U';
         this.centerDialogVisible=true;
       },
@@ -213,7 +221,8 @@
             unitPrice: this.unitPrice,
             author:this.author,
             publish:this.publish,
-            flag:this.flag
+            flag:this.flag,
+            offlineUrl:this.offlineUrl
           });
           res
             .then((data) => {
@@ -226,6 +235,7 @@
               this.unitPrice=0;
               this.author='';
               this.publish='';
+              this.offlineUrl='';
               this.flag='A';
               if (data.code == 200) {
                 alert("操作成功!");
@@ -255,6 +265,7 @@
 
       span {
         float: left;
+        font-size: 18px;
       }
 
       button {

@@ -1,7 +1,11 @@
 <template>
   <div class="ClientLogin" :style="{width:width+'px',height:height+'px'}">
-    <div class="content">
+    <el-card class="content">
+      <el-row>
+        <img src="/src/assets/img/logo.png"/>
+      </el-row>
       <div v-show="curIndex===0">
+
 
         <el-input v-model="userid" type="text" placeholder="请输入账号" />
         <br>
@@ -18,7 +22,7 @@
         <el-button style="margin-top: 20px" type="danger"  @click="signup">注册</el-button>
         <el-button type="danger" @click="setIndex(0)">返回登陆</el-button>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -113,10 +117,11 @@ export default {
 <style scoped lang="less">
 @import "../../assets/css/var.less";
 .ClientLogin{
-  background-color: #eee;
+  background-color: #F9F9F9;
   position: relative;
   .content{
-    width: 300px;
+    background-color: #FCFCFC;
+    width: 350px;
     position: absolute;
     top: 50%;
     left: 50%;

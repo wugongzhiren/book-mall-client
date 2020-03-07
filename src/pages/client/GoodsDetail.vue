@@ -47,7 +47,7 @@
 
           <van-button type="primary" @click="buy">立即购买</van-button>
           <van-button type="primary" @click="addToCart">加入购物车</van-button>
-          <van-button type="primary" @click="readOnline">在线阅读</van-button>
+          <van-button type="primary" v-if="offlineUrl!=''" @click="readOnline">在线阅读</van-button>
 
         </div>
       </div>
@@ -192,6 +192,7 @@
         isCollect:false,
         author:'',
         publish:'',
+        offlineUrl:'',
         temStockNum:9999,
         ticketID:'',
       }
@@ -202,7 +203,7 @@
         this.curIndex = i;
       },
       readOnline(){
-        this.$router.push("/ebook")
+        this.$router.push("/ebook/"+this.offlineUrl)
       },
       getGoodsInfo(id) {
         const res = getGoodsInfo(id);
@@ -219,6 +220,7 @@
             this.author=data.t.author;
             this.publish=data.t.publish;
             this.description = data.t.description;
+            this.offlineUrl=data.t.offlineUrl;
             //this.getTypeGoodsList(data.typeId);
           })
           .catch((e) => {
@@ -357,9 +359,10 @@
         overflow: hidden;
 
         .infoLeft {
+          margin: 60px;
           display: inline-block;
           width: 200px;
-          height: 200px;
+          height: 250px;
           float: left;
         }
 

@@ -37,7 +37,7 @@
       </div>
     </van-form>
 
-    <van-button round block style="margin-left: 16px;margin-right:16px;width:940px;background-color: #ff5074;margin-top: 20px" @click="showPopup" type="danger">
+    <van-button round block style="margin-left: 16px;margin-right:26px;width:860px;background-color: #ff5074;margin-top: 20px" @click="showPopup" type="danger">
       修改密码
     </van-button>
     <!--<ul>
