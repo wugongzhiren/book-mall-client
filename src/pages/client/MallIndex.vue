@@ -8,9 +8,9 @@
     </span>
       </div>
       <FadeSwiper class="swiperBox" height="400px">
-        <img class="banner" slot="item1" v-bind:src="img1" />
-        <img class="banner" slot="item2" v-bind:src="img2" />
-        <img class="banner" slot="item3" v-bind:src="img3" />
+        <img class="banner" slot="item1" src="/src/assets/img/bannel1.jpg" />
+        <img class="banner" slot="item2" src="/src/assets/img/bannel2.jpg" />
+        <img class="banner" slot="item3" src="/src/assets/img/bannel3.jpg" />
       </FadeSwiper>
     </div>
 <div>
@@ -120,9 +120,6 @@ export default {
       h:0,
       m:0,
       s:0,
-      img1:'http://img63.ddimg.cn/2020/2/11/2020021116195727379.jpg',
-      img2:'http://img60.ddimg.cn/2020/2/11/2020021116120412316.jpg',
-      img3:'http://img63.ddimg.cn/2020/2/11/2020021116192353941.jpg'
     }
   },
 

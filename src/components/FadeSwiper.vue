@@ -99,9 +99,9 @@ export default {
   .arrow{
     width: 54px;
     height: 54px;
-    line-height: 54px;
+    line-height: 34px;
     top: 50%;
-    margin-top: -27px;
+    margin-top: -17px;
     position: absolute;
     display: inline-block;
     vertical-align: middle;
