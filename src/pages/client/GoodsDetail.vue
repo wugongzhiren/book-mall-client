@@ -47,7 +47,7 @@
 
           <van-button type="primary" @click="buy">立即购买</van-button>
           <van-button type="primary" @click="addToCart">加入购物车</van-button>
-          <van-button type="primary" v-if="offlineUrl!=''" @click="readOnline">在线阅读</van-button>
+          <van-button type="primary" v-if="offlineUrl!=''&&offlineUrl!=null" @click="readOnline">在线阅读</van-button>
 
         </div>
       </div>
