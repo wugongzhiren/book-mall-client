@@ -53,7 +53,6 @@ export default {
   },
   methods:{
     ...mapMutations({
-     // setClientName: 'SET_CLIENT_NAME',
       setClientToken: 'SET_CLIENT_TOKEN'
     }),
     setIndex(index){
