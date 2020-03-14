@@ -1,31 +1,5 @@
 <template>
   <div class="MallShow">
-  <!--  <FixedNav v-show="navShouldFixed">
-      &lt;!&ndash;<div slot="navContent" class="container fixedNavContainer">
-        <h3 class="fixedLeft" @click="navTo('/mall/show/index')">xxxの蛋糕</h3>
-       &lt;!&ndash; <ul class="fixedRight">
-          <li
-            v-for="(item,index) in typeList"
-            :key="'type'+item.id"
-            :class="{selected:judgeCurPath(item.id)}"
-            @click="selectType(item.id)"
-          >
-            {{item.name}}
-          </li>
-        </ul>&ndash;&gt;
-      </div>&ndash;&gt;
-    </FixedNav>-->
-    <!--<ul ref="typeList" class="typeList">
-      <li
-        v-for="(item,index) in typeList"
-        :key="'type'+item.id"
-        :class="{selected:judgeCurPath(item.id)}"
-        @click="selectType(item.id)"
-      >
-        {{item.name}}
-      </li>
-    </ul>-->
-
     <router-view></router-view>
   </div>
 </template>
@@ -48,7 +22,6 @@ export default {
   data () {
     return {
       tips:[],
-      typeList:[{"id":"0","name":"全部"},{"id":"1","name":"经典系列"},{"id":"2","name":"儿童系列"},{"id":"3","name":"奶油系列"},{"id":"4","name":"尊爱系列"}],
       searchText:'',
       navShouldFixed:false,
     }
@@ -88,15 +61,7 @@ export default {
     },
 
     scrollHandle(){
-      const top = this.$refs.typeList.getBoundingClientRect().top;
-      //还未到顶
-      if(top>0){
-        this.navShouldFixed=false;
-      }
-      //已经到顶
-      else{
-        this.navShouldFixed=true;
-      }
+
     }
   },
 
