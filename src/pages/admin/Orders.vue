@@ -9,9 +9,10 @@
 	        <thead>
 	        	<tr><th>订单号</th><th>用户ID</th><th>收件人</th><th>收货地址</th><th>联系电话</th><th>商品</th><th>规格</th><th>购买数量</th><th>金额</th><th>订单状态</th><th>更新时间</th><th>操作</th></tr>
 	        </thead>
-	        <tbody>
+        <br>
+	        <tbody  style="margin-top: 8px">
 	            <tr v-for="(item,index) in orderList" :key="'order'+item.id">
-	            	<td>{{item.id}}</td>
+	            	<td>{{index+1}}</td>
 	            	<td>{{item.userid}}</td>
 	            	<td>{{item.userName}}</td>
 	            	<td>{{item.address}}</td>
