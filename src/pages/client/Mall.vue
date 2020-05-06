@@ -2,7 +2,7 @@
   <div class="Mall">
 
     <el-row v-if="adimg!=''" type="flex" justify="center">
-      <img v-if="adimg!=''" style="width: 900px;height: 250px;align:middle;position: relative;
+      <img v-if="adimg!=''" style="width: 100%;height: 100%;align:middle;position: relative;
 " :src="adimg" alt=""/>
     </el-row>
     <el-row>
