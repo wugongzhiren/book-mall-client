@@ -164,7 +164,6 @@ export default {
     },
     showGood(id){
       this.$router.push('/mall/goods/'+id);
-      //navTo('/mall/goods/'+id)";
     },
     inputTextChange(text){
     },
