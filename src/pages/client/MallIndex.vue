@@ -169,8 +169,6 @@ export default {
     inputTextChange(text){
     },
     scrollHandle(){
-      //const top = this.$refs.typeList.getBoundingClientRect().top;
-      //还未到顶
       if(top>0){
         this.navShouldFixed=false;
       }
